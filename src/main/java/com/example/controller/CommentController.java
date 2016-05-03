@@ -5,10 +5,7 @@ import com.example.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,8 +30,8 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
-    public ResponseEntity<Comment> addComment() {
-        return new ResponseEntity<>(commentService.addComment(), HttpStatus.OK);
+    public ResponseEntity<Comment> addComment(@RequestBody Comment comment) {
+        return new ResponseEntity<>(commentService.addComment(comment), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
@@ -43,7 +40,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ResponseEntity<Comment> editComment() {
-        return new ResponseEntity<>(commentService.editComment(), HttpStatus.OK);
+    public ResponseEntity<Comment> editComment(@RequestBody Comment comment) {
+        return new ResponseEntity<>(commentService.editComment(comment), HttpStatus.OK);
     }
 }

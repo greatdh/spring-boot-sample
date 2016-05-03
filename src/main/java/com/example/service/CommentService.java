@@ -30,8 +30,8 @@ public class CommentService {
         return Lists.newArrayList(commentRepository.findAll());
     }
 
-    public Comment addComment() {
-        return new Comment();
+    public Comment addComment(Comment comment) {
+        return commentRepository.save(comment);
     }
 
     public String removeComment(int id) {
@@ -44,7 +44,14 @@ public class CommentService {
         }
     }
 
-    public Comment editComment() {
-        return new Comment();
+    public Comment editComment(Comment comment) {
+        Comment savedComment = commentRepository.findOne(comment.getId());
+
+        if (savedComment != null) {
+            savedComment.setComment(comment.getComment());
+            return commentRepository.save(savedComment);
+        } else {
+            return null;
+        }
     }
 }
