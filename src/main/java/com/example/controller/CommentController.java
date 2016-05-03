@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import com.example.entity.Comment;
+import com.example.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,30 +19,31 @@ import java.util.List;
 @RequestMapping("/comment")
 public class CommentController {
 
+    @Autowired
+    private CommentService commentService;
+
     @RequestMapping(value = "/get", method = RequestMethod.GET)
-    public ResponseEntity<String> getComment() {
-        return new ResponseEntity<>("Hello~", HttpStatus.OK);
+    public ResponseEntity<Comment> getComment() {
+        return new ResponseEntity<>(commentService.getComment(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public ResponseEntity<List<String>> getAllComments() {
-        ArrayList<String> result = new ArrayList<>();
-
-        return new ResponseEntity<List<String>>(result, HttpStatus.OK);
+    public ResponseEntity<List<Comment>> getAllComments() {
+        return new ResponseEntity<List<Comment>>(commentService.getAllComments(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
-    public ResponseEntity<String> addComment() {
-        return new ResponseEntity<>("Hello~", HttpStatus.OK);
+    public ResponseEntity<Comment> addComment() {
+        return new ResponseEntity<>(commentService.addComment(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
-    public ResponseEntity<String> removeComment() {
-        return new ResponseEntity<>("Hello~", HttpStatus.OK);
+    public ResponseEntity<Comment> removeComment() {
+        return new ResponseEntity<>(commentService.removeComment(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ResponseEntity<String> editComment() {
-        return new ResponseEntity<>("Hello~", HttpStatus.OK);
+    public ResponseEntity<Comment> editComment() {
+        return new ResponseEntity<>(commentService.editComment(), HttpStatus.OK);
     }
 }
