@@ -1,8 +1,11 @@
 package com.example.service;
 
 import com.example.entity.Comment;
+import com.example.repository.CommentRepository;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,15 +19,16 @@ public class CommentService {
 
     private final static Logger logger = LoggerFactory.getLogger(CommentService.class);
 
-    public Comment getComment() {
+    @Autowired
+    private CommentRepository commentRepository;
+
+    public Comment getComment(int id) {
         logger.info("getComment called");
-        return new Comment();
+        return commentRepository.findOne(id);
     }
 
     public List<Comment> getAllComments() {
-        ArrayList<Comment> result = new ArrayList<>();
-
-        return result;
+        return Lists.newArrayList(commentRepository.findAll());
     }
 
     public Comment addComment() {
