@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,8 +38,8 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
-    public ResponseEntity<Comment> removeComment() {
-        return new ResponseEntity<>(commentService.removeComment(), HttpStatus.OK);
+    public ResponseEntity<String> removeComment(@RequestParam int id) {
+        return new ResponseEntity<>(commentService.removeComment(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
