@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>Comments</h1>
+
+<table border="1">
+    <tbody>
+    <tr th:each="comment: ${comments}">
+        <td th:text="${comment.id}">id</td>
+        <td th:text="${comment.comment}">comment</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
