@@ -43,4 +43,9 @@ public class CommentController {
     public ResponseEntity<Comment> editComment(@RequestBody Comment comment) {
         return new ResponseEntity<>(commentService.editComment(comment), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/getByComment", method = RequestMethod.GET)
+    public ResponseEntity<List<Comment>> getCommentsByComment(@RequestParam String comment) {
+        return new ResponseEntity<>(commentService.getCommentsByComment(comment), HttpStatus.OK);
+    }
 }

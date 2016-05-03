@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,5 +54,10 @@ public class CommentService {
         } else {
             return null;
         }
+    }
+
+    public List<Comment> getCommentsByComment(String comment) {
+//        return Lists.newArrayList(commentRepository.findByComment(comment));
+        return Lists.newArrayList(commentRepository.findCustomQuery(comment));
     }
 }
